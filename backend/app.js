@@ -2,6 +2,7 @@ const express=require("express");
  const app=express();
 
  const productRouter=require('./routers/products');
+ app.use(express.json());
  app.get('/',(req,res)=>{
    res.send(`<h1>Welcome to the Student & Course Portal API!</h1>`);
  });

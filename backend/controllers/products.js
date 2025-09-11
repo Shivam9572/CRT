@@ -7,6 +7,7 @@ let getProductsById=function(req,res){
      res.send(`<h1>${productServices.productById(req.params.id)}</h1>`);
 }
 let addProduct=function(req,res){
-    res.send(`<h1>${productServices.add()}</h1>`);
+     let details=req.body;
+    res.send(`${productServices.add(details)}`);
 }
 module.exports={getAllProducts,getProductsById,addProduct};

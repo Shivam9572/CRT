@@ -5,7 +5,8 @@ let products=()=>{
 let productById=(id)=>{
     return `Fetching user with ID: ${id}`;
 }
-let add=()=>{
-    return `Adding a new product`;
+let add=(deatils)=>{
+    console.log(deatils);
+return `${deatils.name}`;
 }
 module.exports={products,productById,add};
