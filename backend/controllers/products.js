@@ -1,13 +1,13 @@
 const path=require('path');
 const productServices=require('../services/product');
 let getAllProducts=function(req,res){
-     res.sendFile(path.join(__dirname,"..","views","home.html"));
+     productServices.products(res);
 }
 let getProductsById=function(req,res){
-     res.send(`<h1>${productServices.productById(req.params.id)}</h1>`);
+     productServices.productById(res,req.params.id);
 }
 let addProduct=function(req,res){
      let details=req.body;
-    res.send(`${productServices.add(details)}`);
+    productServices.addProduct(res,req.body);
 }
 module.exports={getAllProducts,getProductsById,addProduct};
