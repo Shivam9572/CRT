@@ -6,7 +6,7 @@ const express=require("express");
    res.send(`<h1>Welcome to the Student & Course Portal API!</h1>`);
  });
 
-app.use('/products',productRouter);
+app.use('/api/products',productRouter);
 
  app.use((req,res)=>{
     res.status(404);
