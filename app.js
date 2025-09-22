@@ -1,39 +1,36 @@
-const express=require("express");
-const app=express();
-const mysql=require('mysql2');
-const db=mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"12345",
-  
-});
-db.connect((err)=>{
-    if(err){
-        console.log(err);
-        return;
+const express = require("express");
+const app = express();
+const mysql = require('mysql2/promise');
+
+const config = {
+    host: "localhost",
+    user: "root",
+    password: "12345",
+
+};
+let db;
+
+
+app.get("/", async (req, res, next) => {
+    try {
+        db = await mysql.createConnection(config);
+        console.log("connected database");
+        let result = await db.query("create database if not exists bus_booking");
+        await db.query("use bus_booking");
+        await db.query("create table IF NOT EXISTS Users(id int AUTO_INCREMENT primary key,name varchar(250) not null,email varchar(250) not null)");
+        await db.query("create table IF NOT EXISTS Buses(id int AUTO_INCREMENT primary key,busNumber int not null,totalSeats int not null,availableSeats int not null)");
+        await db.query("create table IF NOT EXISTS Bookings(id int AUTO_INCREMENT primary key,seatNumber int not null)");
+        await db.query("create table IF NOT EXISTS Payments(id int AUTO_INCREMENT primary key,amountPaid int not null,amountStatus int not null)");
+
+        res.send("result");
+    } catch (error) {
+        next(error);
     }
-    db.query("CREATE DATABASE IF NOT EXISTS test",(err,result)=>{
-       if(err){
-        console.log(err);
-        return;
-       }
-       db.query("use test");
-    });
-    console.log("database connected");
 });
-
-app.get("/",(req,res)=>{
-    let query="create table user(id int AUTO_INCREMENT primary key,name varchar(100) not null,password varchar(100))";
-    db.query(query,(err,result)=>{
-        if(err){
-            console.log(err);
-            res.send("error");
-            return
-        }
-        res.json(result);
-    })
+app.use((err, req, res, next) => {
+    console.log('Express error handler:');
+    res.status(500).json({ "message": 'An error occurred', "error": err.message });
 });
-
-app.listen(4000,()=>{
+app.listen(4000, () => {
     console.log("4000 in running server");
 })
