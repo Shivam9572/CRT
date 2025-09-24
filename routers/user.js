@@ -1,9 +1,8 @@
 const express=require("express");
 const router=express.Router();
 
-const {userInsert,userUpdate,userDelete}=require("../controllers/users");
+const {userInsert,getUsers}=require("../controllers/users");
 router.post("/",userInsert);
-router.put("/:id",userUpdate);
-router.delete("/:id",userDelete);
+router.get("/",getUsers);
 
 module.exports=router;
