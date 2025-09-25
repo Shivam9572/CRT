@@ -17,11 +17,10 @@ function databaseConnection() {
             }
             console.log("database is connected");
         })
-        connection.query("create table IF NOT EXISTS users(id int AUTO_INCREMENT primary key,name varchar(250) not null,email varchar(250) not null)", (err, result) => {
+        connection.query("create table IF NOT EXISTS students(id int AUTO_INCREMENT primary key,name varchar(250) not null,email varchar(250) not null,age int not null)", (err, result) => {
             if (err) {
                 throw err;
             }
-            console.log("users table is created");
             
         });
         return connection;
