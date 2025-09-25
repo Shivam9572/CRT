@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
 const db=require("./utils/dbConnection");
-const studentModel=require("./models/students");
+const studentRouter=require("./routers/students");
 app.use(express.json());
 
+
+app.use("/students",studentRouter);
 
 app.use((err, req, res, next) => {
    if(err){
@@ -17,7 +19,7 @@ app.use((err, req, res, next) => {
 app.use((req,res)=>{
     res.status(404).send("page not found");
 });
-db.sync({force:false}).then(()=>{
+db.sync({ force: false }).then(()=>{
     app.listen(4000, () => {
         console.log("4000 in running server"); 
     });
