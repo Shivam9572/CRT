@@ -1,12 +1,13 @@
 const express = require("express");
 const app = express();
 const db=require("./utils/dbConnection");
-const studentRouter=require("./routers/students");
+const usersRouter=require("./routers/users");
+const busesRouter=require("./routers/buses");
 app.use(express.json());
 
 
-app.use("/students",studentRouter);
-
+app.use("/users",usersRouter);
+app.use("/buses",busesRouter);
 app.use((err, req, res, next) => {
    if(err){
     console.log('Express error handler:');
