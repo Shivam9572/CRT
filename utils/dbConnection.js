@@ -6,14 +6,14 @@ let conneection=mysql.createConnection({
   user:"root",
   password:"12345"
 });
-conneection.query("create database if not exists appointment",(err,result)=>{
+conneection.query("create database if not exists collage",(err,result)=>{
   if(err){
     console.log(err);
     return;
   }
-  console.log("crate database appointment");
+  console.log("crate database collage");
 });
-const sequelize = new Sequelize('appointment', 'root', '12345', {
+const sequelize = new Sequelize('collage', 'root', '12345', {
   host: 'localhost',
   dialect: 'mysql'
 });

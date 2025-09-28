@@ -1,6 +1,7 @@
-const Post=require("./posts");
-const Users=require("./users");
+const Students=require("./students");
+const Courses=require("./courses");
+const StudentCourse=require("./studentCourse");
 
-Users.hasMany(Post);
-Post.belongsTo(Users);
-module.exports={Users,Post};
+Students.belongsToMany(Courses,{through:StudentCourse});
+Courses.belongsToMany(Students,{through:StudentCourse});
+module.exports={Students,Courses,StudentCourse};

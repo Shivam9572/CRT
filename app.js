@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const db=require("./utils/dbConnection");
-const usersRouter=require("./routers/users");
+const studentRouter=require("./routers/students");
 const cors=require("cors");
 require("./models/index");
 
@@ -16,7 +16,7 @@ app.use(cors());
 app.get("/",(req,res)=>{
     res.status(200).render("index.ejs",{user:"user"});
 })
-app.use("/users",usersRouter);
+app.use("/students",studentRouter);
 
 app.use((err, req, res, next) => {
    if(err){
