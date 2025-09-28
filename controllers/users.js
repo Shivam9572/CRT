@@ -1,5 +1,6 @@
 const { where } = require("sequelize");
 const Users=require("../models/users");
+const Posts=require("../models/posts");
 
 
 async function getUsers(req,res){
@@ -69,5 +70,39 @@ async function updateUser(req,res){
      res.status(404).send("something went wrong");
    }
 }
+async function createPost(req,res){
+  let id=req.params.id;
+  try {
+    let user=await Users.findOne({where:{id:id}});
+    if(user != null){
+       let post=await Posts.create({
+        ...req.body,userId:id
+       });
+       res.status(200).send(post);
+    }else{
+      res.status(500).send("user not found");
+    }
+  } catch (error) {
+    
+  }
+}
+async function getPostsOfUser(req,res){
+    let id=req.params.id;
+    try {
+    let user=await Users.findOne({where:{id:id}});
+    if(user != null){
+       let posts=await Posts.findAll({where:{
+        userId:id
+       }});
+       posts=posts.map((p)=>p.toJSON());
+       
+       res.status(200).send(posts);
+    }else{
+      res.status(500).send("user not found");
+    }
+  } catch (error) {
+    
+  }
+}
 
-module.exports={getUsers,addUser,deleteUser,updateUser,getUser};
+module.exports={getUsers,addUser,deleteUser,updateUser,getUser,createPost,getPostsOfUser};

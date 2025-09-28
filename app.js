@@ -3,6 +3,7 @@ const app = express();
 const db=require("./utils/dbConnection");
 const usersRouter=require("./routers/users");
 const cors=require("cors");
+require("./models/index");
 
 
 
