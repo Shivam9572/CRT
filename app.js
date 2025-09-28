@@ -2,12 +2,21 @@ const express = require("express");
 const app = express();
 const db=require("./utils/dbConnection");
 const usersRouter=require("./routers/users");
-const busesRouter=require("./routers/buses");
+const cors=require("cors");
+
+
+
 app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+app.set("view engine","ejs");
+app.use(express.static('public'));
+app.use(cors());
 
-
+app.get("/",(req,res)=>{
+    res.status(200).render("index.ejs",{user:"user"});
+})
 app.use("/users",usersRouter);
-app.use("/buses",busesRouter);
+
 app.use((err, req, res, next) => {
    if(err){
     console.log('Express error handler:');

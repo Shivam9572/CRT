@@ -1,6 +1,19 @@
 const { Sequelize } = require('sequelize');
-
-const sequelize = new Sequelize('test', 'root', '12345', {
+const mysql=require("mysql2");
+ 
+let conneection=mysql.createConnection({
+  host:"localhost",
+  user:"root",
+  password:"12345"
+});
+conneection.query("create database if not exists appointment",(err,result)=>{
+  if(err){
+    console.log(err);
+    return;
+  }
+  console.log("crate database appointment");
+});
+const sequelize = new Sequelize('appointment', 'root', '12345', {
   host: 'localhost',
   dialect: 'mysql'
 });
