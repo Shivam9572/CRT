@@ -6,14 +6,14 @@ let conneection=mysql.createConnection({
   user:"root",
   password:"12345"
 });
-conneection.query("create database if not exists bus_booking",(err,result)=>{
+conneection.query("create database if not exists expense",(err,result)=>{
   if(err){
     console.log(err);
     return;
   }
-  console.log("crate database bus_booking");
+  console.log("crate database expense");
 });
-const sequelize = new Sequelize('bus_booking', 'root', '12345', {
+const sequelize = new Sequelize('expense', 'root', '12345', {
   host: 'localhost',
   dialect: 'mysql'
 });
