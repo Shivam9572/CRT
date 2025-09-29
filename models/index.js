@@ -1,7 +1,10 @@
-const Students=require("./students");
-const Courses=require("./courses");
-const StudentCourse=require("./studentCourse");
 
-Students.belongsToMany(Courses,{through:StudentCourse});
-Courses.belongsToMany(Students,{through:StudentCourse});
-module.exports={Students,Courses,StudentCourse};
+const Bookings=require("./bookings");
+const Buses=require("./buses");
+const Users=require("./users");
+
+Users.belongsToMany(Buses,{through:Bookings});
+Buses.belongsToMany(Users,{through:Bookings});
+Bookings.belongsTo(Users);
+Bookings.belongsTo(Buses);
+module.exports={Bookings,Buses,Users};

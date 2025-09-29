@@ -1,8 +1,11 @@
 const express = require("express");
 const app = express();
 const db=require("./utils/dbConnection");
-const studentRouter=require("./routers/students");
+const userRouter=require("./routers/users");
+const busRouter=require("./routers/buses");
+const bookingRouter=require("./routers/booking");
 const cors=require("cors");
+const { booking } = require("./controllers/users");
 require("./models/index");
 
 
@@ -16,7 +19,9 @@ app.use(cors());
 app.get("/",(req,res)=>{
     res.status(200).render("index.ejs",{user:"user"});
 })
-app.use("/students",studentRouter);
+app.use("/users",userRouter);
+app.use("/buses",busRouter);
+app.use("/booking",booking);
 
 app.use((err, req, res, next) => {
    if(err){
