@@ -6,16 +6,18 @@ let conneection=mysql.createConnection({
   user:"root",
   password:"12345"
 });
-conneection.query("create database if not exists expense",(err,result)=>{
+function createDatabase(){conneection.query("create database if not exists library",(err,result)=>{
   if(err){
     console.log(err);
     return;
   }
-  console.log("crate database expense");
-});
-const sequelize = new Sequelize('expense', 'root', '12345', {
+  
+});}
+createDatabase();
+const sequelize = new Sequelize('library', 'root', '12345', {
   host: 'localhost',
-  dialect: 'mysql'
+  dialect: 'mysql',
+  timezone: '+05:30'
 });
 
 (async()=>{

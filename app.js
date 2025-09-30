@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const db=require("./utils/dbConnection");
 
-const expenseRouter=require("./routers/expense");
+const libraryRouter=require("./routers/bookPurchase");
 const cors=require("cors");
 
 
@@ -16,8 +16,8 @@ app.use(cors());
 
 app.get("/",(req,res)=>{
     res.status(200).render("index.ejs",{user:"user"});
-})
-app.use("/expense",expenseRouter);
+});
+app.use("/library",libraryRouter);
 
 
 app.use((err, req, res, next) => {
@@ -38,4 +38,4 @@ db.sync({ force: false }).then(()=>{
     });
 }).catch((err)=>{
     console.log(err);
-})
+});

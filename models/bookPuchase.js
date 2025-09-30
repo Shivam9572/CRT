@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../utils/dbConnection"); // your DB connection file
 
-const Expense = sequelize.define("Expense", {
+const BookPurchase = sequelize.define("book_purchase", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -11,17 +11,15 @@ const Expense = sequelize.define("Expense", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  amount: {
-    type: DataTypes.FLOAT,
-    allowNull: false,
+  fine:{
+    type:DataTypes.INTEGER,
+    allowNull:false,
+    defaultValue:0
   },
-  category: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  description: {
-    type: DataTypes.STRING,
-  },
+  returned:{
+    type:DataTypes.DATE,
+    allowNull:false
+  }
 });
 
-module.exports = Expense;
+module.exports = BookPurchase;

@@ -1,3 +1,59 @@
-h1{
-  color: red;
+body{
+  background-color: blue;
+}
+#name{
+  height:1.6rem;
+  max-width: 15rem;
+  min-width: 15rem;
+  border: 1px solid black;
+
+}
+#submit{
+  border: 1px solid black;
+  color: green;
+  background-color: black;
+  width: 5.5rem;
+  height: 1.8rem;
+}
+.purchaseBook{
+  padding:5px;
+  margin: 5px;
+  
+}
+#purchase_books_list{
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  padding: 5px;
+ margin: auto;
+
+
+}
+.purchaseBook{
+  background-color: gray;
+  padding: 20px;
+  min-width: 200px;
+  max-width: 200px;
+
+}
+.returnBtn{
+   background-color: green;
+   border-radius: 2px;
+
+
+}
+.returnBtn:hover{
+  cursor: pointer;
+}
+#return_book_list{
+  display: flex;
+  flex-flow: column;
+  flex-wrap: wrap;
+  padding: 5px;
+ margin: auto;
+
+}
+.returnBook{
+  margin: 5px;
+  padding: 5px;
 }

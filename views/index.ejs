@@ -9,24 +9,28 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-   <h1>Booking appoint app</h1>
-   <form id="submitForm">
-        <label for="name">Name:</label>
-        <input id="name" name="name" type="text"><br><br>
-        <label for="phone">Phone:</label>
-        <input type="text" id="phone" name="phone"><br><br>
-        <label for="email">Email:</label>
-        <input for="email" id="email" name="email"><br><br>
+   <h1>Books</h1>
+   <div id="addBook">
+    <form id="submitForm">
+        
+        <input id="name" name="title" type="text" placeholder="Please Enter BookName">
 
-        <button  id="submit" type="submit">add</button>
+        <button  id="submit" type="submit">Submit</button>
 
    </form>
-   
-   
-   <div>
-     <ul id="users">
-     </ul>
    </div>
+   <div id="purchase_books_list">
+    
+   </div>
+   <h1>
+    Returned Books
+   </h1>
+   <div id="return_book_list">
+    
+   </div>
+   
+   
+   
   
     <script src="/index.js"></script>
 </body>
