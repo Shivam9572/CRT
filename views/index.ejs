@@ -9,21 +9,29 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-   <h1>Books</h1>
-   <div id="addBook">
+   <h1 style="display: flex;justify-content: center;">Books <img src="./assests/image.jpg" style="width: 3rem; height: 3rem; margin-inline: 5px;"></h1>
+   <div id="addBook" >
     <form id="submitForm">
         
         <input id="name" name="title" type="text" placeholder="Please Enter BookName">
 
-        <button  id="submit" type="submit">Submit</button>
+        <button  id="submit" type="submit">Add</button>
+       
 
    </form>
+    <button id="search" class="btn">Search</button>
    </div>
-   <div id="purchase_books_list">
+   <hr>
+   <div id="search_book_list" class="my-scrollable-div">
+    <p id="p_close">Search for results <button id="close" class="btn">X</button></p><br>
+   </div>
+   <div id="purchase_books_list" class="my-scrollable-div">
     
    </div>
-   <h1>
-    Returned Books
+   <hr style="background: red;">
+   
+   <h1 style="display: flex;justify-content: center;">
+   <img src="./assests/book.jpeg" style="width: 3rem; height: 3rem; margin-inline: 5px;"> Returned Books
    </h1>
    <div id="return_book_list">
     

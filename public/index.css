@@ -1,26 +1,49 @@
 body{
-  background-color: blue;
+  background-color: rgb(181, 216, 239);
+}
+hr{
+  background: blueviolet;
+  height: 2px;
+}
+span{
+  font-weight: bold;
+}
+p{
+  display: inline;
+  font-family: 'Times New Roman', Times, serif;
 }
 #name{
   height:1.6rem;
   max-width: 15rem;
   min-width: 15rem;
   border: 1px solid black;
+  border-radius: 5px;
 
 }
 #submit{
   border: 1px solid black;
-  color: green;
-  background-color: black;
+  color: black;
+  
   width: 5.5rem;
   height: 1.8rem;
+  border-radius: 5px;
+  margin-inline: 5px;
+}
+#submitForm{
+      display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fine{
+  color: red;
 }
 .purchaseBook{
   padding:5px;
   margin: 5px;
-  
+  border-radius: 5px;
+
 }
-#purchase_books_list{
+#purchase_books_list,#search_book{
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
@@ -44,6 +67,8 @@ body{
 }
 .returnBtn:hover{
   cursor: pointer;
+  color: white;
+  border: 1px solid red;
 }
 #return_book_list{
   display: flex;
@@ -57,3 +82,53 @@ body{
   margin: 5px;
   padding: 5px;
 }
+#pay{
+  padding-inline: 15px;
+  margin-inline: 15px;
+  background-color: aquamarine;
+  color: red;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+
+}
+#pay:hover{
+  background-color: whitesmoke;
+  color: black;
+  cursor: pointer;
+  border: 1px solid red;
+}
+#addBook{
+  display: flex;
+  justify-content: center;
+}
+.payDiv{
+  margin-inline: 5px;
+
+}
+#search{
+  border: 2px solid green;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  width: 5rem;
+}
+.btn:hover{
+  background-color: rgb(247, 131, 131);
+  color: black;
+  cursor: pointer;
+  border: 4px solid red;
+}
+#search_book_list{
+  display: none;
+}
+#p_close{
+  display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+ .my-scrollable-div {
+         /* Or max-height: 200px; */
+        overflow-y: auto; /* Adds a vertical scrollbar only when content overflows */
+    }

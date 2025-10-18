@@ -1,14 +1,23 @@
+const { where, Op } = require("sequelize");
 const BookPurchase = require("../models/bookPuchase");
 const ReturnBooks = require("../models/returnBooks");
-const returnBook=require("../models/returnBooks");
  
-function fine(id){
-  setTimeout(async()=>{
-     let book=await BookPurchase.findByPk(id);
-     if(book){
-        await BookPurchase.update({fine:350},{where:{id:id}});
-     }
-  },60*60*1000);
+
+async function fine(id){
+  
+     
+     
+     let time;
+     time=setInterval(async()=>{
+       let book=await BookPurchase.findByPk(id);
+       
+       if(book){
+        let fine=book.fine;
+        await BookPurchase.update({fine:fine+350},{where:{id:id}});
+       }else{
+        clearInterval(time);
+       }
+     },30*1000);
 }
 // ✅ Create Book
 exports.addBook = async (req, res) => {
@@ -25,6 +34,12 @@ exports.addBook = async (req, res) => {
 // ✅ Get All Books
 exports.getBooks = async (req, res) => {
   try {
+     let {search}=req.query;
+     if(search){
+      let booksBySeacrh = await BookPurchase.findAll({where:{title:{[Op.like]:`%${search}%`}}});
+      res.json(booksBySeacrh.map((b)=>(b.toJSON())));
+      return;
+     }
     const books = await BookPurchase.findAll();
     res.json(books.map((b)=>(b.toJSON())));
   } catch (err) {
