@@ -27,3 +27,28 @@ module.exports.signup=async(req,res)=>{
     res.status(404).send({"failed":error.message});
    }
 }
+
+module.exports.login=async(req,res)=>{
+   
+   let {email,password}=req.body;
+   if(!email ||  !password) {
+    res.send({"failed":"all fields are requiered"});
+    return;
+   }
+   try {
+    let user=await userModel.findByPk(email);
+    if(!user){
+        res.send({"failed":`${email} does not exits`});
+        return;
+    }
+    if(user.password != password){
+        res.send({"failed":`please enter correct password`});
+        return;
+    }
+   
+    res.send({"sucess":user});
+   } catch (error) {
+    console.log(error);
+    res.status(404).send({"failed":error.message});
+   }
+}
