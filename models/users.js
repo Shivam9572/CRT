@@ -14,7 +14,6 @@ let Users=seqelize.define("user",{
     },
     password:{
         type:DataTypes.STRING,
-        primaryKey:true,
 
     }
 });
