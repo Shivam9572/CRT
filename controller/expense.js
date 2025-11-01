@@ -1,6 +1,8 @@
 const Expense=require("../models/expense");
+
+
 module.exports.addExpense=async(req,res)=>{
-  let email=req.params.email;
+ 
   let {amount,description,category}=req.body;
   if(!amount || !description || !category){
     res.json({success:false,message:"allfields must be required"});
@@ -8,7 +10,8 @@ module.exports.addExpense=async(req,res)=>{
   }
 
    try {
-      let result=await Expense.create({amount:amount,description:description,category:category,useremail:email});
+    
+      let result=await Expense.create({amount:amount,description:description,category:category,userid:req.userId});
       
       res.send( result);
 
@@ -19,9 +22,9 @@ module.exports.addExpense=async(req,res)=>{
 
 }
 module.exports.getExpense=async(req,res)=>{
-    let email=req.params.email;
+   
     try {
-        let result=await Expense.findAll({where:{useremail:email },attributes:["id","amount","description","category"]});
+        let result=await Expense.findAll({where:{userid:req.userId},attributes:["id","amount","description","category"]});
         res.send(result);
     } catch (error) {
         res.send(error.message);

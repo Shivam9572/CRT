@@ -1,6 +1,7 @@
 const userModel=require("../models/users");
-
 const bcrypt=require("bcrypt");
+const jwt=require("jsonwebtoken");
+
 module.exports.signup=async(req,res)=>{
     
    let {name,email,password,cpassword}=req.body;
@@ -20,13 +21,16 @@ module.exports.signup=async(req,res)=>{
     }
     bcrypt.hash(password,10,async(err,hash)=>{
         if(!err){
-                let respond=await userModel.create({name:name,email:email,password:hash});
-                  res.send({success:true,message:respond.email});
+                let user=await userModel.create({name:name,email:email,password:hash});
+                 user=user.toJSON();
+              let token=jwt.sign({userId:user.id},"secretkey");
+              
+              res.send({success:true,message:token});
         }else{
             throw new Error("bcrypt error");
         }
         
-    })
+    });
     
   
    } catch (error) {
@@ -43,7 +47,7 @@ module.exports.login=async(req,res)=>{
     return;
    }
    try {
-    let user=await userModel.findByPk(email);
+    let user=await userModel.findOne({where:{email:email}});
     if(!user){
         res.status(400).json({success:false,failed:`${email} does not exits`});
         return;
@@ -53,7 +57,10 @@ module.exports.login=async(req,res)=>{
             throw new Error("bcrypt error");
         }
         if(result){
-              res.send({success:true,message:user});
+             user=user.toJSON();
+              let token=jwt.sign({userId:user.id},"secretkey");
+              
+              res.send({success:true,message:token});
         }else{
              res.send({success:false,message:"please enter correct password"});
         }
